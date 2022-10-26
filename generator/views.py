@@ -4,7 +4,7 @@ import random
 from generator.models import Passwords
 from .models import Passwords
 
-# Create your views here.
+# Create your views heredsdsd.
 
 def home(request):
     passwords = Passwords.objects.all().order_by('-created')[:5]
