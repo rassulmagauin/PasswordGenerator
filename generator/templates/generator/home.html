@@ -25,5 +25,12 @@
 
   <input type="submit" value="Geberate Password" class = "btn btn-primary">
 </form>
+<h1>Last Passwords:</h1>
+{%for password in passwords%}
+{{password.title}}
+<br>
+
+
+{%endfor%}
 
 </div>

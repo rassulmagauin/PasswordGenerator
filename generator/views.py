@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import random
+from generator.models import Passwords
+from .models import Passwords
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'generator/home.html', {'password':'dsjfhjdsjf'})
+    passwords = Passwords.objects.all().order_by('-created')[:5]
+    for password in passwords:
+        print(password.title+" "+(str)(password.created))
+    return render(request, 'generator/home.html', {'passwords':passwords})
 
 def password(request):
 
@@ -21,7 +26,8 @@ def password(request):
     thepassword = ''
     for x in range(length):
         thepassword+=random.choice(characters)
-
+    p = Passwords(title = thepassword)
+    p.save()
     return render(request, 'generator/password.html', {'password':thepassword})
 
 def aboutus(request):
